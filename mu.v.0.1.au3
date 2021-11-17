@@ -3,41 +3,41 @@
 
 HotKeySet ("{ESC}", "Terminate")
 
-;~ Работать в окне MUOnline
+;~ Р Р°Р±РѕС‚Р°С‚СЊ РІ РѕРєРЅРµ MUOnline
 Local $muGarius = WinGetPos('MU', 'garius')
 
-;Позиция кнопки Инвентаря
+;РџРѕР·РёС†РёСЏ РєРЅРѕРїРєРё РРЅРІРµРЅС‚Р°СЂСЏ
 Local $invPosX = $muGarius[0] + 711
 Local $invPosY = $muGarius[1] + 588
 
-;Позиция центра
+;РџРѕР·РёС†РёСЏ С†РµРЅС‚СЂР°
 Local $centerPosX = $muGarius[0] + 400
 Local $centerPosY = $muGarius[1] + 270
 
-;~ позиция критического уровня здоровья
+;~ РїРѕР·РёС†РёСЏ РєСЂРёС‚РёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ Р·РґРѕСЂРѕРІСЊСЏ
 Local $hpPointX = $muGarius[0] + 238
 Local $hpPointY = $muGarius[1] + 593
 
-;~ смещение центра при открытом инвентаре
+;~ СЃРјРµС‰РµРЅРёРµ С†РµРЅС‚СЂР° РїСЂРё РѕС‚РєСЂС‹С‚РѕРј РёРЅРІРµРЅС‚Р°СЂРµ
 If 1 then
    $centerPosX = $muGarius[0] + 300
 EndIf
 
-;Позиция первой ячейки инвенторя
+;РџРѕР·РёС†РёСЏ РїРµСЂРІРѕР№ СЏС‡РµР№РєРё РёРЅРІРµРЅС‚РѕСЂСЏ
 Local $invFirstCellX = $muGarius[0] + 585 + 12
 Local $invFirstCellY = $muGarius[1] + 277 + 12
 
-;Функция остоновки скрипта
+;Р¤СѓРЅРєС†РёСЏ РѕСЃС‚РѕРЅРѕРІРєРё СЃРєСЂРёРїС‚Р°
 Func Terminate()
     Exit
  EndFunc
 
-; Ожидание между действиями
+; РћР¶РёРґР°РЅРёРµ РјРµР¶РґСѓ РґРµР№СЃС‚РІРёСЏРјРё
 Func wait()
    sleep(200)
 EndFunc
 
-; Нажать на кнопку инвентаря
+; РќР°Р¶Р°С‚СЊ РЅР° РєРЅРѕРїРєСѓ РёРЅРІРµРЅС‚Р°СЂСЏ
  Func pressInvBtn()
    sleep(200)
    MouseMove($invPosX, $invPosY, 10)
@@ -48,7 +48,7 @@ EndFunc
 ;~    Send("{V}")
 EndFunc
 
-;  Нажать на центр экрана
+;  РќР°Р¶Р°С‚СЊ РЅР° С†РµРЅС‚СЂ СЌРєСЂР°РЅР°
  Func pressCenter()
    wait()
    MouseMove($centerPosX, $centerPosY, 10)
@@ -57,7 +57,7 @@ EndFunc
    MouseUp($MOUSE_CLICK_LEFT)
 EndFunc
 
-;~ Атаковать в центре экрана
+;~ РђС‚Р°РєРѕРІР°С‚СЊ РІ С†РµРЅС‚СЂРµ СЌРєСЂР°РЅР°
 Func atacCenter()
    MouseMove($centerPosX, $centerPosY, 10)
    MouseDown($MOUSE_CLICK_RIGHT)
@@ -65,7 +65,7 @@ Func atacCenter()
    MouseUp($MOUSE_CLICK_RIGHT)
 EndFunc
 
-; Проверить Инвентарь
+; РџСЂРѕРІРµСЂРёС‚СЊ РРЅРІРµРЅС‚Р°СЂСЊ
 Func CheckInv()
    MouseMove($centerPosX, $centerPosY, 10)
    If PixelGetColor($invPosX, $invPosY) = '6249038' Then
@@ -77,7 +77,7 @@ Func CheckInv()
    EndIf
 EndFunc
 
-;~ Открыть инвентарь
+;~ РћС‚РєСЂС‹С‚СЊ РёРЅРІРµРЅС‚Р°СЂСЊ
 Func openInv()
    while CheckInv()
 	  pressInvBtn()
@@ -86,7 +86,7 @@ Func openInv()
    Return True
 EndFunc
 
-;~ Провести мышью по инвентарю
+;~ РџСЂРѕРІРµСЃС‚Рё РјС‹С€СЊСЋ РїРѕ РёРЅРІРµРЅС‚Р°СЂСЋ
 Func invMouseMove()
    For $i = 0 to 24*8 Step 25
 	  For $j = 0 to 24*8 Step 25
@@ -96,7 +96,7 @@ Func invMouseMove()
    Next
 EndFunc
 
-;~ вывести в консоль цвета инвентаря
+;~ РІС‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ С†РІРµС‚Р° РёРЅРІРµРЅС‚Р°СЂСЏ
 Func checkInvColors()
    For $i = 0 to 24*8 Step 25
 	  ConsoleWrite(@CRLF)
@@ -106,20 +106,20 @@ Func checkInvColors()
    Next
 EndFunc
 
-;~ получить цвет в формате HEX, по координатам x, y
+;~ РїРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ РІ С„РѕСЂРјР°С‚Рµ HEX, РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј x, y
 Func getColor($clrX, $clrY)
    Return Hex(PixelGetColor($clrX, $clrY), 6)
 EndFunc
 
-;~ Получить цвет ячейки
+;~ РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ СЏС‡РµР№РєРё
 Func getCellColor($cellX, $cellY)
    $cellColor = ''
    $cellColor = getColor($invFirstCellX + 25 * $cellX - 25, $invFirstCellY + 25 * $cellY - 25)
-   ConsoleWrite('Цвет ячейки ' & $cellX & 'x' & $cellY & ' = ' & $cellColor & @CRLF)
+   ConsoleWrite('Р¦РІРµС‚ СЏС‡РµР№РєРё ' & $cellX & 'x' & $cellY & ' = ' & $cellColor & @CRLF)
    Return $cellColor
 EndFunc
 
-;~ Выбросить предмет из ячейки
+;~ Р’С‹Р±СЂРѕСЃРёС‚СЊ РїСЂРµРґРјРµС‚ РёР· СЏС‡РµР№РєРё
 Func dropItem($dropItemX, $dropItemY)
    Local $randomDropPlase = Random(1, 5 , 1)
 
@@ -155,137 +155,137 @@ Func dropItem($dropItemX, $dropItemY)
 
 EndFunc
 
-;~ Проверка на пустую ячейку
+;~ РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚СѓСЋ СЏС‡РµР№РєСѓ
 Func checkCell7x5()
-   ConsoleWrite('Проверяю ячейку 7х5 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 7С…5 ' & @CRLF)
    Local $emptyCell7x5 = '1D1B1B'
    If getCellColor(7, 5) = $emptyCell7x5 Then
-	  ConsoleWrite('Ячейка 7х5 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7С…5 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 7х5 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7С…5 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell8x5()
-   ConsoleWrite('Проверяю ячейку 8х5 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 8С…5 ' & @CRLF)
    Local $emptyCell8x5 = '222020'
    If getCellColor(8, 5) = $emptyCell8x5 Then
-	  ConsoleWrite('Ячейка 8х5 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8С…5 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 8х5 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8С…5 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell7x6()
-   ConsoleWrite('Проверяю ячейку 7х6 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 7С…6 ' & @CRLF)
    Local $emptyCell7x6 = '1E1C1C'
    If getCellColor(7, 6) = $emptyCell7x6 Then
-	  ConsoleWrite('Ячейка 7х6 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7С…6 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 7х6 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7С…6 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell8x6()
-   ConsoleWrite('Проверяю ячейку 8x6 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 8x6 ' & @CRLF)
    Local $emptyCell8x6 = '161616'
    If getCellColor(8, 6) = $emptyCell8x6 Then
-	  ConsoleWrite('Ячейка 8x6 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x6 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 8x6 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x6 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell7x7()
-   ConsoleWrite('Проверяю ячейку 7x7 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 7x7 ' & @CRLF)
    Local $emptyCell7x7 = '1B1919'
    If getCellColor(7, 7) = $emptyCell7x7 Then
-	  ConsoleWrite('Ячейка 7x7 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7x7 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 7x7 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7x7 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell8x7()
-   ConsoleWrite('Проверяю ячейку 8x7 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 8x7 ' & @CRLF)
    Local $emptyCell8x7 = '171717'
    If getCellColor(8, 7) = $emptyCell8x7 Then
-	  ConsoleWrite('Ячейка 8x7 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x7 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 8x7 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x7 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell7x8()
-   ConsoleWrite('Проверяю ячейку 7x8 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 7x8 ' & @CRLF)
    Local $emptyCell7x8 = '242222'
    If getCellColor(7, 8) = $emptyCell7x8 Then
-	  ConsoleWrite('Ячейка 7x8 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7x8 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 7x8 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 7x8 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 Func checkCell8x8()
-   ConsoleWrite('Проверяю ячейку 8x8 ' & @CRLF)
+   ConsoleWrite('РџСЂРѕРІРµСЂСЏСЋ СЏС‡РµР№РєСѓ 8x8 ' & @CRLF)
    Local $emptyCell8x8 = '1E1C1C'
    If getCellColor(8, 8) = $emptyCell8x8 Then
-	  ConsoleWrite('Ячейка 8x8 пустая ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x8 РїСѓСЃС‚Р°СЏ ' & @CRLF)
 	  Return False
    Else
-	  ConsoleWrite('Ячейка 8x8 занята ' & @CRLF)
+	  ConsoleWrite('РЇС‡РµР№РєР° 8x8 Р·Р°РЅСЏС‚Р° ' & @CRLF)
 	  Return True
    EndIf
 EndFunc
 
-;~ Выбросить последнюю шмотку
+;~ Р’С‹Р±СЂРѕСЃРёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ С€РјРѕС‚РєСѓ
 Func dropLastItem()
    If openInv() Then
 	  If checkCell7x5() Then
-		 ConsoleWrite ('Дропаем 7x5' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 7x5' & @CRLF)
 		 dropItem(7, 5)
 	  ElseIf checkCell8x5() Then
-		 ConsoleWrite ('Дропаем 8x5' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 8x5' & @CRLF)
 		 dropItem(8, 5)
 	  ElseIf checkCell7x6() Then
-		 ConsoleWrite ('Дропаем 7x6' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 7x6' & @CRLF)
 		 dropItem(7, 6)
 	  ElseIf checkCell8x6() Then
-		 ConsoleWrite ('Дропаем 8x6' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 8x6' & @CRLF)
 		 dropItem(8, 6)
 	  ElseIf checkCell7x7() Then
-		 ConsoleWrite ('Дропаем 7x7' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 7x7' & @CRLF)
 		 dropItem(7, 7)
 	  ElseIf checkCell8x7() Then
-		 ConsoleWrite ('Дропаем 8x7' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 8x7' & @CRLF)
 		 dropItem(8, 7)
 	  ElseIf checkCell7x8() Then
-		 ConsoleWrite ('Дропаем 7x8' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 7x8' & @CRLF)
 		 dropItem(7, 8)
 	  ElseIf checkCell8x8() Then
-		 ConsoleWrite ('Дропаем 8x8' & @CRLF)
+		 ConsoleWrite ('Р”СЂРѕРїР°РµРј 8x8' & @CRLF)
 		 dropItem(8, 8)
 	  Else
-		 ConsoleWrite ('Пусто, продолжаем качаться' & @CRLF)
+		 ConsoleWrite ('РџСѓСЃС‚Рѕ, РїСЂРѕРґРѕР»Р¶Р°РµРј РєР°С‡Р°С‚СЊСЃСЏ' & @CRLF)
 	  EndIf
    EndIf
 EndFunc
 
-;~ отхилиться
+;~ РѕС‚С…РёР»РёС‚СЊСЃСЏ
 Func getHP()
    If getColor(hpPointX, hpPointY) = '2F2D2D' Then
-	  Send("{Q 5
+	  Send("{Q 5}")
    EndIf
 EndFunc
 
-;~ Короткий временный скрипт
+;~ РљРѕСЂРѕС‚РєРёР№ РІСЂРµРјРµРЅРЅС‹Р№ СЃРєСЂРёРїС‚
 Func goEaseKach()
    getHP()
    atacCenter()
@@ -303,17 +303,13 @@ Func goEaseKach()
    WEnd
 EndFunc
 
-;~ Продакшн скрипт	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;~ РџСЂРѕРґР°РєС€РЅ СЃРєСЂРёРїС‚	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 goEaseKach()
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-;~ Тест скрипт	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;~ РўРµСЃС‚ СЃРєСЂРёРїС‚	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
